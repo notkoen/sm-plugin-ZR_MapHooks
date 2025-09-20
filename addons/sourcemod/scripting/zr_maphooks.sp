@@ -25,7 +25,17 @@ public void OnPluginStart()
     g_hCVar_PlayerShotCount = CreateConVar("zr_playershotcount", "1", "Bullet count required per game_playershot call.", 0, true, 1.0);
     AutoExecConfig();
 
-    HookEvent("player_hurt", EventPlayerHurt);
+    g_hCVar_PlayerShotHook.AddChangeHook(OnConVarChanged);
+    if (g_hCVar_PlayerShotHook.BoolValue)
+        HookEvent("player_hurt", EventPlayerHurt);
+}
+
+public void OnConVarChanged(ConVar convar, const char[] oldValue, const char[] newValue)
+{
+    if (!g_hCVar_PlayerShotHook.BoolValue)
+        UnhookEvent("player_hurt", EventPlayerHurt);
+    else
+        HookEvent("player_hurt", EventPlayerHurt);
 }
 
 public void OnClientDisconnect(int client)
@@ -51,13 +61,13 @@ public void ZR_OnClientInfected(int client, int attacker, bool motherInfect, boo
     }
 }
 
-public Action EventPlayerHurt(Handle event, const char[] name, bool dontBroadcast)
+public void EventPlayerHurt(Handle event, const char[] name, bool dontBroadcast)
 {
     if (g_hCVar_PlayerShotHook.BoolValue)
     {
         int attacker = GetClientOfUserId(GetEventInt(event, "attacker"));
         if (attacker <= 0)
-            return Plugin_Continue;
+            return;
 
         if (g_hCVar_PlayerShotCount.IntValue > 1)
         {
@@ -71,7 +81,7 @@ public Action EventPlayerHurt(Handle event, const char[] name, bool dontBroadcas
         else
             FirePlayerShot(attacker);
     }
-    return Plugin_Continue;
+    return;
 }
 
 void FirePlayerShot(int client)
