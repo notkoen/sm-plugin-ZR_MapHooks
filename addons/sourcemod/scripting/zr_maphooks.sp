@@ -52,7 +52,6 @@ public Action EventPlayerHurt(Handle event, const char[] name, bool dontBroadcas
     if (g_hCVar_PlayerShotHook.BoolValue)
     {
         int attacker = GetClientOfUserId(GetEventInt(event, "attacker"));
-
         if (attacker <= 0)
             return Plugin_Continue;
 
@@ -66,9 +65,7 @@ public Action EventPlayerHurt(Handle event, const char[] name, bool dontBroadcas
             }
         }
         else
-        {
             FirePlayerShot(attacker);
-        }
     }
     return Plugin_Continue;
 }
