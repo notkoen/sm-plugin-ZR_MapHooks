@@ -5,9 +5,9 @@
 #include <sdktools>
 #include <zombiereloaded>
 
-ConVar g_CVar_ZRInfectKill;
-ConVar g_CVar_PlayerShotHook;
-ConVar g_CVar_PlayerShotCount;
+ConVar g_hCVar_ZRInfectKill;
+ConVar g_hCVar_PlayerShotHook;
+ConVar g_hCVar_PlayerShotCount;
 
 bool g_bPlayerShotHook;
 bool g_bZRInfectKill;
@@ -18,29 +18,29 @@ int g_PlayerShotCurrent[MAXPLAYERS + 1] = {0, ...};
 
 public void OnPluginStart()
 {
-    g_CVar_ZRInfectKill = CreateConVar("zr_shotinfectkill", "1", "Enable the game_playerdie/kill entities to be triggered by ZR.", 0, true, 0.0, true, 1.0);
-    g_bZRInfectKill = g_CVar_ZRInfectKill.BoolValue;
-    g_CVar_ZRInfectKill.AddChangeHook(OnConVarChanged);
+    g_hCVar_ZRInfectKill = CreateConVar("zr_shotinfectkill", "1", "Enable the game_playerdie/kill entities to be triggered by ZR.", 0, true, 0.0, true, 1.0);
+    g_bZRInfectKill = g_hCVar_ZRInfectKill.BoolValue;
+    g_hCVar_ZRInfectKill.AddChangeHook(OnConVarChanged);
 
-    g_CVar_PlayerShotHook = CreateConVar("zr_playershothook", "1", "Enable the usage of the game_playershot entity.", 0, true, 0.0, true, 1.0);
-    g_bPlayerShotHook = g_CVar_PlayerShotHook.BoolValue;
-    g_CVar_PlayerShotHook.AddChangeHook(OnConVarChanged);
+    g_hCVar_PlayerShotHook = CreateConVar("zr_playershothook", "1", "Enable the usage of the game_playershot entity.", 0, true, 0.0, true, 1.0);
+    g_bPlayerShotHook = g_hCVar_PlayerShotHook.BoolValue;
+    g_hCVar_PlayerShotHook.AddChangeHook(OnConVarChanged);
 
-    g_CVar_PlayerShotCount = CreateConVar("zr_playershotcount", "1", "Bullet count required per game_playershot call.", 0, true, 1.0);
-    g_PlayerShotCount = g_CVar_PlayerShotCount.IntValue;
-    g_CVar_PlayerShotCount.AddChangeHook(OnConVarChanged);
+    g_hCVar_PlayerShotCount = CreateConVar("zr_playershotcount", "1", "Bullet count required per game_playershot call.", 0, true, 1.0);
+    g_PlayerShotCount = g_hCVar_PlayerShotCount.IntValue;
+    g_hCVar_PlayerShotCount.AddChangeHook(OnConVarChanged);
 
     HookEvent("player_hurt", EventPlayerHurt);
 }
 
 public void OnConVarChanged(ConVar convar, const char[] oldValue, const char[] newValue)
 {
-    if (convar == g_CVar_ZRInfectKill)
-        g_bZRInfectKill = g_CVar_ZRInfectKill.BoolValue;
-    else if (convar == g_CVar_PlayerShotHook)
-        g_bPlayerShotHook = g_CVar_PlayerShotHook.BoolValue;
-    else if (convar == g_CVar_PlayerShotCount)
-        g_PlayerShotCount = g_CVar_PlayerShotCount.IntValue;
+    if (convar == g_hCVar_ZRInfectKill)
+        g_bZRInfectKill = g_hCVar_ZRInfectKill.BoolValue;
+    else if (convar == g_hCVar_PlayerShotHook)
+        g_bPlayerShotHook = g_hCVar_PlayerShotHook.BoolValue;
+    else if (convar == g_hCVar_PlayerShotCount)
+        g_PlayerShotCount = g_hCVar_PlayerShotCount.IntValue;
 }
 
 public void ZR_OnClientInfected(int client, int attacker, bool motherInfect, bool respawnOverride, bool respawn)
