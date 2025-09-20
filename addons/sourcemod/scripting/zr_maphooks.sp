@@ -16,6 +16,7 @@ public void OnPluginStart()
     g_hCVar_ZRInfectKill    = CreateConVar("zr_shotinfectkill",  "1", "Enable the game_playerdie/kill entities to be triggered by ZR.", 0, true, 0.0, true, 1.0);
     g_hCVar_PlayerShotHook  = CreateConVar("zr_playershothook",  "1", "Enable the usage of the game_playershot entity.", 0, true, 0.0, true, 1.0);
     g_hCVar_PlayerShotCount = CreateConVar("zr_playershotcount", "1", "Bullet count required per game_playershot call.", 0, true, 1.0);
+    AutoExecConfig();
 
     HookEvent("player_hurt", EventPlayerHurt);
 }
