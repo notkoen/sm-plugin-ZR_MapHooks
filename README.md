@@ -1,13 +1,10 @@
-### This repository is now marked as deprecated.
-With the recent 64-bit update in February, the `logic_eventlistener` entity should be used to replace `trigger_brush` entities, making this plugin unnecessary for future map updates.
 
-### The plugin is deprecated due to the following reasons:
+### ZR MapHooks
 
-- The `trigger_brush` entities are being replaced by the `logic_eventlistener` entity.
-- Server managers are encouraged to update their maps to utilize the new entity.
+This plugin allows for maps to trigger the `game_playerdie`, `game_playerkill`, and `game_playershot` events for `trigger_brush` entities.
 
-[sm-plugin-zombiereloaded v3.12.7+](https://github.com/srcdslab/sm-plugin-zombiereloaded) keep the event support from `trigger_brush` via cvar (`zr_infect_skip_trigger_brush`) for
-- `game_playerdie`
-- `game_playerkill`
+> [!CAUTION]
+> The 64-bit update in February introduced the `logic_eventlistener` entity, which provides better event hooks for mappers to use. It is recommended that mappers use this entity over the plugin as it is native to the game and does not require plugins.
 
-**`game_playershot` event can (and should) be handled via vscript since its not an original event from the game engine.**
+> [!TIP]
+> [sm-plugin-zombiereloaded v3.12.7+](https://github.com/srcdslab/sm-plugin-zombiereloaded) was updated to maintain support for `trigger_brush` via cvar (`zr_infect_skip_trigger_brush`) for both `game_playershot` and `game_playerdie` events.
