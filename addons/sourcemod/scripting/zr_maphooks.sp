@@ -1,7 +1,6 @@
 #pragma newdecls required
 #pragma semicolon 1
 
-#include <sourcemod>
 #include <sdktools>
 #include <zombiereloaded>
 
