@@ -11,6 +11,14 @@ ConVar g_hCVar_PlayerShotCount;
 
 int g_PlayerShotCurrent[MAXPLAYERS + 1] = {0, ...};
 
+public Plugin myinfo =
+{
+    name = "ZR MapHooks",
+    author = "BotoX",
+    description = "Enables map interactions with Zombie:Reloaded and fixes game_playershot for trigger_brush",
+    version = "0.2",
+};
+
 public void OnPluginStart()
 {
     g_hCVar_ZRInfectKill    = CreateConVar("zr_shotinfectkill",  "1", "Enable the game_playerdie/kill entities to be triggered by ZR.", 0, true, 0.0, true, 1.0);
