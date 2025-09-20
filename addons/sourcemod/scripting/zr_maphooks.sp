@@ -29,6 +29,11 @@ public void OnPluginStart()
     HookEvent("player_hurt", EventPlayerHurt);
 }
 
+public void OnClientDisconnect(int client)
+{
+    g_PlayerShotCurrent[client] = 0;
+}
+
 public void ZR_OnClientInfected(int client, int attacker, bool motherInfect, bool respawnOverride, bool respawn)
 {
     if (g_hCVar_ZRInfectKill.BoolValue && !motherInfect)
