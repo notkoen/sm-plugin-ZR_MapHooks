@@ -13,7 +13,7 @@ int g_PlayerShotCurrent[MAXPLAYERS + 1] = {0, ...};
 public Plugin myinfo =
 {
     name = "ZR MapHooks",
-    author = "BotoX",
+    author = "BotoX & koen",
     description = "Enables map interactions with Zombie:Reloaded and fixes game_playershot for trigger_brush",
     version = "0.2",
 };
