@@ -57,7 +57,7 @@ public Action EventPlayerHurt(Handle event, const char[] name, bool dontBroadcas
 
         if (g_hCVar_PlayerShotCount.IntValue > 1)
         {
-            g_PlayerShotCurrent[attacker] = g_PlayerShotCurrent[attacker] + 1;
+            g_PlayerShotCurrent[attacker]++;
             if (g_PlayerShotCurrent[attacker] >= g_hCVar_PlayerShotCount.IntValue)
             {
                 g_PlayerShotCurrent[attacker] = 0;
